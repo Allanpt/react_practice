@@ -30,7 +30,7 @@ export const App = () => {
   function handleSortUsers(id) {
     setIsActive(true);
     setuserID(id);
-    setProduct([...products].filter(el => el.userObj.id === id));
+    setProduct([...product].filter(el => el.userObj.id === id));
   }
 
   function handleSortAllUsers() {
@@ -55,7 +55,7 @@ export const App = () => {
 
   function handleFilterInput(e) {
     setInputText(e);
-    setProduct([...products].filter(el => el.name.toLowerCase().includes(e)));
+    setProduct([...product].filter(el => el.name.toLowerCase().includes(e)));
   }
 
   function handleFilterInputClean() {
