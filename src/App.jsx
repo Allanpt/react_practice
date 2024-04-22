@@ -85,6 +85,11 @@ export const App = () => {
     setProduct(products);
   }
 
+  function resetAll() {
+    handleFilterInputClean();
+    setIsActive(false);
+  }
+
   return (
     <div className="section">
       <div className="container">
@@ -166,13 +171,6 @@ export const App = () => {
                   {cat.title}
                 </a>
               ))}
-              <a
-                data-cy="Category"
-                className="button mr-2 my-1 is-info"
-                href="#/"
-              >
-                Category 1
-              </a>
             </div>
 
             <div className="panel-block">
@@ -180,6 +178,7 @@ export const App = () => {
                 data-cy="ResetAllButton"
                 href="#/"
                 className="button is-link is-outlined is-fullwidth"
+                onClick={resetAll}
               >
                 Reset all filters
               </a>
