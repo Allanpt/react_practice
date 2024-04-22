@@ -24,13 +24,24 @@ export const App = () => {
   const [isActive, setIsActive] = useState(false);
   const [userID, setuserID] = useState(NaN);
   const [product, setProduct] = useState(products);
+  const [filterProduct, setfilterProduct] = useState(products);
   const [categoryList, setCategoryList] = useState(newCategory);
   const [inputText, setInputText] = useState('');
 
   function handleSortUsers(id) {
-    setIsActive(true);
-    setuserID(id);
-    setProduct([...product].filter(el => el.userObj.id === id));
+    if (inputText !== '') {
+      setIsActive(true);
+      setuserID(id);
+      setProduct([...filterProduct].filter(el => el.userObj.id === id));
+      setfilterProduct([...filterProduct].filter(el => el.userObj.id === id));
+    }
+
+    if (inputText === '') {
+      setIsActive(true);
+      setuserID(id);
+      setfilterProduct([...products].filter(el => el.userObj.id === id));
+      setProduct([...products].filter(el => el.userObj.id === id));
+    }
   }
 
   function handleSortAllUsers() {
@@ -55,7 +66,18 @@ export const App = () => {
 
   function handleFilterInput(e) {
     setInputText(e);
-    setProduct([...product].filter(el => el.name.toLowerCase().includes(e)));
+    if (isActive) {
+      setProduct(
+        [...filterProduct].filter(el => el.name.toLowerCase().includes(e)),
+      );
+    }
+
+    if (!isActive) {
+      setProduct([...products].filter(el => el.name.toLowerCase().includes(e)));
+      setfilterProduct(
+        [...products].filter(el => el.name.toLowerCase().includes(e)),
+      );
+    }
   }
 
   function handleFilterInputClean() {
